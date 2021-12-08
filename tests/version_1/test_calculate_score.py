@@ -140,8 +140,6 @@ def test_six_ones():
         ((1, 1, 1, 2, 2, 2), 1200),
     ],
 )
-
-
 def test_all(test_input, expected):
     actual = GameLogic.calculate_score(test_input)
     assert actual == expected
