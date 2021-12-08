@@ -12,11 +12,11 @@ class GameLogic:
         
         if collection[5] == 1 or collection[5] == 2:
             score += 50 * collection[5]
-            print(1)
+            
     
         if collection[1] == 1 or collection[1] == 2:
             score += 100 * collection[1]
-            print(1)
+            
         
         # Check for 3 of a kind 
         for i in range(1,7):
