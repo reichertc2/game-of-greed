@@ -122,7 +122,12 @@ class GameLogic:
         
 
         if collection[1] == 1 and collection[2] == 1 and collection[3] == 1 and collection[4] == 1 and collection[5] == 1 and collection[6] == 1:
-            output.append(1,2,3,4,5,6)
+            output.append(1)
+            output.append(2)
+            output.append(3)
+            output.append(4)
+            output.append(5)
+            output.append(6)
             
         count = 0 
         temp = []
