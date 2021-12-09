@@ -52,33 +52,9 @@ class Game:
                 print("Enter dice to keep, or (q)uit:")
             
             
+            
                 
-                
-                
-                
-            # def get_dice(y):
-            #     status = False
-                
-            #     dice_input = input("> ")        
-                    
-            #     if dice_input == "q":
-            #         print(f"Thanks for playing. You earned {self.banker.balance} points")
-            #         return
-
-            #     saved_dice = [int(x) for x in dice_input if x.isdigit()]
-                    
-            #     status = GameLogic.validate_keepers(tuple(y), tuple(saved_dice))
-                
-            #     if status == False:
-            #         print("Cheater!!! Or possibly made a typo...")
-            #         print(f"*** {y} ***")
-            #         print("Enter dice to keep, or (q)uit:")
-            #         get_dice(y)    
-            #     if status == True:
-            #         return saved_dice
-
-
-            # saved_dice = get_dice(roll_num)
+            
             
             dice_input = input("> ")  
             if dice_input == "q":
@@ -86,16 +62,20 @@ class Game:
                 return
 
             saved_dice = [int(x) for x in dice_input if x.isdigit()]
-            
+            valid = GameLogic.validate_keepers(tuple(user_roll), tuple(saved_dice))
+            while not valid:
+                print("Cheater!!! Or possibly made a typo...")
+                print(f"*** {roll_num} ***")
+                print("Enter dice to keep, or (q)uit:")
+                dice_input = input("> ")  
+                saved_dice = [int(x) for x in dice_input if x.isdigit()]
+                valid = GameLogic.validate_keepers(tuple(user_roll), tuple(saved_dice))
+            if valid:       
+                score = GameLogic.calculate_score(tuple(saved_dice))
+                shelf = self.banker.shelved
+                self.banker.shelf(shelf + score)
             
             self.dice_num -= len(saved_dice) 
-                      
-                
-            score = GameLogic.calculate_score(tuple(saved_dice))
-            shelf = self.banker.shelved
-            self.banker.shelf(shelf + score)
-            
-            
             if dice_input:
                 print(f"You have {self.banker.shelved} unbanked points and {self.dice_num} dice remaining")
                 print("(r)oll again, (b)ank your points or (q)uit:")
