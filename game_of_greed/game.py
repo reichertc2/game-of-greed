@@ -100,11 +100,6 @@ class Game:
             self.status = True
         rolling()
 
-    if __name__ == "__main__":
-        
-        
-        def mock_roller(rolls):
-            rolls = []
-            return rolls.pop(0) 
-
-        play(mock_roller)
+if __name__ == "__main__":
+    game = Game()
+    game.play(GameLogic.roll_dice)
