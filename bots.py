@@ -115,7 +115,7 @@ class BaseBot(ABC):
             player = cls()
             game = Game()
             try:
-                game.play()
+                game.play(GameLogic.roll_dice)
             except SystemExit:
                 # in game system exit is fine
                 # because that's how they quit.
@@ -222,7 +222,23 @@ class ShanBot(BaseBot):
 
         return super()._enter_dice()
 
+class Joseph(BaseBot):
+    def _roll_bank_or_quit(self):
+        """your logic here"""
+        if self.unbanked_points <= 600 and self.dice_remaining >= 3:
+            return "r"
+        elif 450 >= self.unbanked_points and self.dice_remaining == 2:
+            return "b"
+        elif self.unbanked_points <= 300 and self.dice_remaining == 1:
+            return "r"
+        else:
+            return "b"
 
+    def _enter_dice(self):
+        """simulate user entering which dice to keep.
+        Defaults to all scoring dice"""
+        
+        return super()._enter_dice()
 
 if __name__ == "__main__":
     num_games = 100
@@ -230,3 +246,4 @@ if __name__ == "__main__":
     Miguel_Bot.play(num_games)
     ReichRobo.play(num_games)
     BrannonBot.play(num_games)
+    Joseph.play(num_games)
