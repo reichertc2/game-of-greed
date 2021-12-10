@@ -154,26 +154,25 @@ class BrannonBot(BaseBot):
 
 class ReichRobo(BaseBot):
     def _roll_bank_or_quit(self):
-            if self.dice_remaining > 5 and self.total_score > 2000:
-                if self.unbanked_points < 750:
+            if self.dice_remaining > 2 and self.total_score < 1000:
+                if self.unbanked_points < 600:
                     return 'r'
-                elif self.unbanked_points > 350 and self.dice_remaining > 2:
-                    return 'r' 
-                elif self.unbanked_points > 1500:
-                    return 'b'
-                else:
-                    return 'r'
-            
-            if self.dice_remaining > 5 and self.total_score > 5000:
-                if self.unbanked_points < 500:
-                    return 'r'
-                elif self.unbanked_points > 350 and self.dice_remaining > 3:
-                    return 'r' 
+                elif self.unbanked_points > 600 and self.dice_remaining >=3:
+                    return 'b' 
                 elif self.unbanked_points > 1000:
-                    return 'b'
+                    return 'r'
                 else:
                     return 'b'
 
+            if self.dice_remaining > 5 and self.total_score <= 5000:
+                if self.unbanked_points < 500:
+                    return 'r'
+                elif self.unbanked_points > 350 and self.dice_remaining >= 1:
+                    return 'b' 
+                elif self.unbanked_points > 750:
+                    return 'b'
+                else:
+                    return 'b'
             if self.dice_remaining > 5 and self.total_score > 7000:
                 if self.unbanked_points < 250:
                     return 'r'
@@ -183,6 +182,7 @@ class ReichRobo(BaseBot):
                     return 'b'
                 else:
                     return 'r'
+            return 'b'
 
 
     def _enter_dice(self):
