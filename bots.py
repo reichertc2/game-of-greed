@@ -184,7 +184,23 @@ class ReichRobo(BaseBot):
                     return 'r'
             return 'b'
 
-
+class Miguel_Bot(BaseBot): 
+    def _mock_print(self, *args, **kwargs):
+        return super()._mock_print(*args, **kwargs)
+    
+    def _mock_input(self, *args, **kwargs):
+        return super()._mock_input(*args, **kwargs)
+    
+    def _roll_bank_or_quit(self):
+        """your logic here"""
+        if self.unbanked_points < 300:
+            return "r"
+        if self.dice_remaining < 3:
+            return "b"
+        if self.dice_remaining <= 3  and self.total_score > 8000:
+            return 'b'
+        else:
+            return "r"
     def _enter_dice(self):
         return super()._enter_dice()
 
@@ -192,4 +208,6 @@ class ReichRobo(BaseBot):
 if __name__ == "__main__":
     num_games = 100
     NervousNellie.play(num_games)
-    YourBot.play(num_games)
+    Miguel_Bot.play(num_games)
+    ReichRobo.play(num_games)
+    BrannonBot.play(num_games)
