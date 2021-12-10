@@ -204,6 +204,25 @@ class Miguel_Bot(BaseBot):
     def _enter_dice(self):
         return super()._enter_dice()
 
+class ShanBot(BaseBot):
+    def _roll_bank_or_quit(self):
+        """your logic here"""
+        if self.unbanked_points < 200 and self.dice_remaining > 2:
+            return "r"
+        if self.unbanked_points > 3000:
+            return "b"
+        if self.dice_remaining < 3:
+            return "b"
+        else:
+            return "r"
+
+    def _enter_dice(self):
+        """simulate user entering which dice to keep.
+        Defaults to all scoring dice"""
+
+        return super()._enter_dice()
+
+
 
 if __name__ == "__main__":
     num_games = 100
